@@ -1,0 +1,186 @@
+\documentclass[a4paper]{article}
+\usepackage[top=2cm, left=2cm, bottom=2cm, right=2cm]{geometry}
+\usepackage{physics}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pagecolor}
+\usepackage[some]{background}
+\usepackage{tocloft}
+\usepackage{esvect}
+\usepackage[most]{tcolorbox}
+\newtcolorbox{note}{boxrule=0pt, colback=white, frame hidden, sharp corners, enhanced, borderline west={1pt}{0pt}{RoyalBlue}, breakable=true}
+\renewcommand{\cftsecfont}{\color{white}}
+\renewcommand{\cftsubsecfont}{\color{white}}
+\doublespacing
+\renewcommand{\arraystretch}{0.604}
+\newcommand{\point}[2]{\langle#1\,,#2\rangle}
+\renewcommand{\point}[3]{\left\langle#1\,,#2\,,#3\right\rangle}
+\renewcommand{\familydefault}{qhv}
+\renewcommand{\vector}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\renewcommand{\vector}[3]{\begin{pmatrix}#1\\#2\\#3\end{pmatrix}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newenvironment{example}{\begin{note}\large\textbf{Example}\normalsize\newline}{\end{note}}
+
+\begin{document}
+\begin{titlepage}
+    \pagecolor{RoyalBlue}
+    \color{white}
+    \vspace*{5em}
+    \Huge\textbf{Improved Waddle}
+
+    \Large\textbf{For the IB Math AA HL course}
+
+    \vspace*{5em}
+    \LARGE By \textbf{Noël M. Nimstad}
+    \vspace*{17.5em}
+    \normalsize
+    \tableofcontents
+\end{titlepage}
+\pagecolor{white}
+\newpage
+\section{Vectors}
+\subsection{Planes}
+Fundementally, a point $\vec{P}$ lies on a plane $\Pi$ if it satisfies the equation:
+$$
+    \vv{AP}=\lambda\vv{AB}+\mu\vv{AC}\qc\lambda,\mu\in\mathbb{R}
+$$
+where $\vec{A},\vec{B}$ and $\vec{C}$ are three other points on the plane.
+The normal vector $\vec{n}$ of a plane is found by taking the cross product of two vectors on the plane:
+$$
+    \vec{n}=\vv{AB}\cross\vv{AC}
+$$
+There are three main formulaeic ways of describe a plane, these are:
+\begin{itemize}
+    \item The vector equation:
+    $$
+    \vec{r}=\vec{a}+\lambda\vec{u}+\mu\vec{v}\qc\lambda,\mu\in\mathbb{R}
+    $$
+    where $\vec{a},\vec{b}$ and $\vec{c}$ are three position vectors in space.
+    This form is used to generate positions $\vec{r}$ through the setting of $\lambda$ and $\mu$.
+    This form is equivalently stated as:
+    $$
+        \vector{x}{y}{z}=\vector{a_1}{a_2}{a_3}+\lambda\vector{u_1}{u_2}{u_3}+\mu\vector{v_1}{v_2}{v_3}\qc\lambda,\mu\in\mathbb{R}
+    $$
+    \item The parametric form is obtained by making the vector equation in to a system of equations.
+    \item The Cartesian form:
+    $$
+        ax+by+cz=d\qc a,b,c,d\in\mathbb{R}
+    $$
+    This form is obtained by removing $\lambda$ and $\mu$ from the parametric form's system of equations.
+    This form is homogenous to the equation of a straight line ($ax+by=c$) in 2 dimensional Cartesian $x$-$y$ space, extended for 3 variables.
+    If we know the normal vector $\vec{n}$ of the plane and one point $\vec{a}$, this form is also equivalently stated as (with $\vec{p}$ being any arbritrary point):
+    $$
+        \vec{n}\cdot\vec{p}=\vec{n}\cdot\vec{a}
+    $$
+    The normal vector of a plane stated in Cartesian form $ax+by+cz=d$ is:
+    $$
+        \vec{n}=\vector{a}{b}{c}
+    $$
+\end{itemize}
+\begin{example}
+    The point $A\point{0}{2}{1}$, $B\point{3}{0}{-1}$ and $C\point{-2}{1}{1}$ lie on the plane $\Pi$.
+    The vector equation of the plane is given by first finding $\vec{u}=\vv{AB}$ and $\vec{b}=\vv{AC}$:
+    \begin{align*}
+        \vec{u}=\vv{AB}&=\point{3}{0}{-1}-\point{0}{2}{1}=\vector{3}{-2}{-2}\\
+        \vec{v}=\vv{AC}&=\point{-2}{1}{1}-\point{0}{2}{1}=\vector{-2}{-1}{0}
+    \end{align*}
+    Thus the vector equation is given as:
+    $$
+        \vector{x}{y}{z}=\vector{0}{2}{1}+\lambda\vector{3}{-2}{-2}+\mu\vector{-2}{-1}{0}\qc\lambda,\mu\in\mathbb{R}
+    $$
+    Analagously, the parametric form is given by the system of equations:
+    $$
+        \left\{\begin{array}{ll}
+            x=3\lambda-2\mu\\
+            y=2-2\lambda-1\mu\\
+            z=1-2\lambda\\
+        \end{array}\right.
+    $$
+    To convert to Cartesian form, we need to eliminate $\mu$ and $\lambda$ from the system.
+    We see:
+    $$
+        x-2y=3\lambda-2\mu-4+4\lambda+2\mu=-4+7\lambda
+    $$
+    Thus:
+    \begin{align*}
+        x-2y+3.5z&=-4+7\lambda+3.5-7\lambda=-0.5\\
+        \implies2x-4y+7z&=-1
+    \end{align*}
+    The normal vector is therefore also given as:
+    $$
+        \vec{n}=\vector{2}{-4}{7}
+    $$
+\end{example}
+If the normal vector of two planes $\vec{n}_1$ and $\vec{n}_2$ are collinear ($\vec{n}_1=a\vec{n}_2,\,a\in\mathbb{R}$), then the planes are parallel.
+Otherwise, the planes intersect at a line given by two different methods.
+The first is the solution to the system of equations of the planes' Cartesian forms letting one of the coordinates equal some variable $\lambda$.
+The other is taking the cross product of the two normal vector $\vec{n}_1\cross\vec{n}_2$, which gives the direction vector of the line.
+\begin{example}
+    Let $\Pi_1:2x-4y+7z=1$ and $\Pi_2:-x+y+2z=0$.
+    The normal vectors of the planes are:
+    \begin{align*}
+        \vec{n}_1&=\vector{2}{-4}{7}\\
+        \vec{n}_2&=\vector{-1}{1}{2}
+    \end{align*}
+    $\because\nexists a\in\mathbb{R}$ s.t. $\vec{n}_1=a\vec{n}_2$, $\neg(\Pi_1\parallel\Pi_2)$.
+
+    \textbf{Method 1}
+    The planes' intersection is given at the line which is the solution to the system, letting $z=\lambda$:
+    \begin{align*}
+        &\left(\begin{array}{ll}
+            2x-4y=1-7\lambda\\
+            -x+y=-2\lambda
+        \end{array}\right)\\
+        &\sim\left(\begin{array}{ll}
+            2x-4y=1-7\lambda\\
+            -2x+2y=-4\lambda
+        \end{array}\right)_{2R_2\rightarrow R_2}\\
+        &\sim\left(\begin{array}{ll}
+            -2y=1-11\lambda\\
+            -2x=1-15\lambda
+        \end{array}\right)_{R_1+R_2\rightarrow R_1,\,2R_2+R_1\rightarrow R_2}\\
+        &\sim\left(\begin{array}{ll}
+            y=\frac{11\lambda-1}{2}\\
+            x=\frac{15\lambda-1}{2}
+        \end{array}\right)_{-\frac{R_1}{2}\rightarrow R_1,\,-\frac{R_2}{2}\rightarrow R_2}
+    \end{align*}
+    The intersection is thus the line:
+    $$
+        L:\lambda\mapsto\point{\frac{15\lambda-1}{2}}{\frac{11\lambda-1}{2}}{\lambda}
+    $$
+    
+    \textbf{Method 2}
+    The direction vector $\vec{d}$ is given by:
+    \begin{align*}
+        \vec{d}=\vec{n}_1\cross\vec{n}_2&=\vector{2}{-4}{7}\cross\vector{-1}{1}{2}\\
+        &=\left\lvert\begin{matrix}
+            \hat{\imath} & \hat{\jmath} & \hat{k} \\
+            2 & -4 & 7 \\
+            -1 & 1 & 2
+        \end{matrix}\right\rvert=\hat{\imath}\left\lvert\begin{matrix}
+            -4 & 7\\
+            1 & 2
+        \end{matrix}\right\rvert-\hat{\jmath}\left\lvert\begin{matrix}
+            2 & 7\\
+            -1 & 2
+        \end{matrix}\right\rvert+\hat{k}\left\lvert\begin{matrix}
+            2 & -4\\
+            -1 & 1
+        \end{matrix}\right\rvert\\
+        &=-15\hat{\imath}-11\hat{\jmath}-2\hat{k}
+    \end{align*}
+    We then find a point common on both planes by choosing $z=0$ and their equating equations (using $\Pi_1-1$):
+    \begin{align*}
+        2x-4y-1&=-x+y\\
+        3x-5y&=1
+    \end{align*}
+    We can then choose the point $\point{\frac{1}{3}}{0}{0}$.
+    The equation can then finally be written as:
+    $$
+        L:\lambda\mapsto\point{\frac{1}{3}}{0}{0}+\point{15}{11}{2}\lambda
+    $$
+\end{example}
+\end{document}
